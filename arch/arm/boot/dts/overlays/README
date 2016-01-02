@@ -78,7 +78,7 @@ Name:   <The base DTB>
 Info:   Configures the base Raspberry Pi hardware
 Load:   <loaded automatically>
 Params:
-        audio                    Set to "on" to disable the onboard ALSA audio
+        audio                    Set to "on" to enable the onboard ALSA audio
                                  interface (default "off")
 
         i2c_arm                  Set to "on" to enable the ARM's i2c interface
@@ -328,8 +328,18 @@ Params: gpio_out_pin             GPIO for output (default "17")
 
 
 Name:   mcp2515-can0
-Info:   Configures the MCP2515 CAN controller
+Info:   Configures the MCP2515 CAN controller on spi0.0
 Load:   dtoverlay=mcp2515-can0,<param>=<val>
+Params: oscillator               Clock frequency for the CAN controller (Hz)
+
+        spimaxfrequency          Maximum SPI frequence (Hz)
+
+        interrupt                GPIO for interrupt signal
+
+
+Name:   mcp2515-can1
+Info:   Configures the MCP2515 CAN controller on spi0.1
+Load:   dtoverlay=mcp2515-can1,<param>=<val>
 Params: oscillator               Clock frequency for the CAN controller (Hz)
 
         spimaxfrequency          Maximum SPI frequence (Hz)
@@ -432,6 +442,12 @@ Load:   dtoverlay=rpi-proto
 Params: <None>
 
 
+Name:   rpi-sense
+Info:   Raspberry Pi Sense HAT
+Load:   dtoverlay=rpi-sense
+Params: <None>
+
+
 Name:   sdhost
 Info:   Selects the bcm2835-sdhost SD/MMC driver, optionally with overclock
 Load:   dtoverlay=sdhost,<param>=<val>
@@ -455,6 +471,12 @@ Params: <None>
 Name:   spi-bcm2835
 Info:   Selects the bcm2835-spi SPI driver
 Load:   dtoverlay=spi-bcm2835
+Params: <None>
+
+
+Name:   spi-dma
+Info:   enables dma modes for spi-bcm2835
+Load:   dtoverlay=spi-dma
 Params: <None>
 
 

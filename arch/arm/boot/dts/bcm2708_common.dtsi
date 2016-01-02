@@ -91,7 +91,7 @@
 			status = "disabled";
 		};
 
-		gpio: gpio {
+		gpio: gpio@7e200000 {
 			compatible = "brcm,bcm2835-gpio";
 			reg = <0x7e200000 0xb4>;
 			interrupts = <2 17>, <2 18>;
@@ -116,8 +116,8 @@
 
 		i2s: i2s@7e203000 {
 			compatible = "brcm,bcm2708-i2s";
-			reg = <0x7e203000 0x20>,
-			      <0x7e101098 0x02>;
+			reg = <0x7e203000 0x24>,
+			      <0x7e101098 0x08>;
 
 			//dmas = <&dma 2>,
 			//       <&dma 3>;
@@ -133,9 +133,6 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			status = "disabled";
-			/* the dma channels */
-			dmas = <&dma 6>, <&dma 7>;
-			dma-names = "tx", "rx";
 			/* the chipselects used - <0> means native GPIO
 			 * add more gpios if necessary as <&gpio 6 1>
 			 * (but do not forget to make them output!)
